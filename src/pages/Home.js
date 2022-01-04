@@ -5,7 +5,7 @@ import {
   StyleSheet,
   TextInput,
   Platform,
-  TouchableOpacity,
+  FlatList,
 } from "react-native";
 import { Button } from "../components/Button";
 import { SkillCard } from "../components/SkillCard";
@@ -29,13 +29,14 @@ export default function Home() {
         onChangeText={setNewSkill}
       />
 
-      <Button />
+      <Button onPress={handleAddNewSkill} />
 
       <Text style={[styles.title, { marginVertical: 50 }]}>My Skills</Text>
-
-      {mySkills.map((skill) => (
-        <SkillCard />
-      ))}
+      <ScrollView>
+        {mySkills.map((skill) => (
+          <SkillCard key={skill} skill={skill} />
+        ))}
+      </ScrollView>
     </View>
   );
 }
